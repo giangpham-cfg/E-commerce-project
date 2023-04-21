@@ -1,16 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './index.scss';
-import { Button, Checkbox, Form, Input } from 'antd';
-
-// const onFinish = (values: any) => {
-//   console.log('Success:', values);
-// };
-
-// const onFinishFailed = (errorInfo: any) => {
-//   console.log('Failed:', errorInfo);
-// };
+import { Button, Form, Input, message, notification } from 'antd';
+import { Link, useNavigate } from 'react-router-dom';
+import { callRegister } from '../../service/api';
 
 const RegisterPage = () => {
+    const navigate = useNavigate();
+    const [isSubmit, setIsSubmit] = useState(false);
+
+    const onFinish = async (values) => {
+        const { fullName, email, password, phone } = values;
+        setIsSubmit(true);
+        const res = await callRegister(fullName, email, password, phone);
+        setIsSubmit(false);
+        if (res?.data?._id) {
+            message.success({
+                content: 'Your registration is completed. Thanks for signing up!',
+                duration: 5
+            });
+            navigate('/login')
+        } else {
+            notification.error({
+                message: 'There is an error!',
+                description: 'Email is invalid or already exist. Please use another email',
+                placement: 'topRight',
+                duration: 5
+            })
+        }
+    };
 
     return (
         <div className='register-wrapper'>
@@ -19,12 +36,10 @@ const RegisterPage = () => {
                     <div className='sign-up'>Sign Up</div>
                     <Form
                         name="basic"
-                        labelCol={{ span: 6 }}
-                        wrapperCol={{ span: 16 }}
-                        // style={{ maxWidth: 600 }}
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
                         initialValues={{ remember: true }}
-                        // onFinish={onFinish}
-                        // onFinishFailed={onFinishFailed}
+                        onFinish={onFinish}
                         autoComplete="off"
                     >
                         <Form.Item
@@ -59,8 +74,13 @@ const RegisterPage = () => {
                             <Input />
                         </Form.Item>
 
-                        <Form.Item wrapperCol={{ offset: 10, span: 16 }}>
-                            <Button type="primary" htmlType="submit">
+                        <div className='register-text'>
+                            Signed up already?
+                            <a href='#'>Login here</a>
+                        </div>
+
+                        <Form.Item wrapperCol={{ offset: 9, span: 16 }}>
+                            <Button type="primary" htmlType="submit" loading={isSubmit}>
                                 Submit
                             </Button>
                         </Form.Item>

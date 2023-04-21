@@ -1,28 +1,36 @@
 * {
     box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif 
 }
+
+@keyframes clouds {
+    100% {
+        background-position: 15% 100%;
+    }
+}
+
 .register-wrapper {
     height: 100vh;
     background: url('../../assets/register-background.svg');
     background-repeat: no-repeat;
-    background-position: center;
     background-size: cover;
+    animation: clouds 17s infinite alternate-reverse linear;
 
     .register-container {
-        position: absolute;
+        position: fixed;
         top: 0;
         bottom: 0;
         left: 0;
         right: 0;
         width: 30vw;
-        min-width: 400px;
-        height: 80vh;
+        min-width: 370px;
+        height: 85vh;
         margin: auto;
         border-radius: 10px;
         background-color: white;
 
         .register-content {
-            padding: 10px;
+            padding: 15px;
 
             .sign-up {
                 font-weight: 600;
@@ -30,7 +38,15 @@
                 padding-top: 30px;
                 margin-bottom: 30px;
                 text-align: center;
-                font-family: Arial, Helvetica, sans-serif;
+            }
+
+            .register-text {
+                margin-bottom: 20px;
+                text-align: center;
+
+                a {
+                    margin-left: 5px;
+                }
             }
         }
     }
