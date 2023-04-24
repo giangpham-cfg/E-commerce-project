@@ -10,7 +10,7 @@ const RegisterPage = () => {
 
     const onFinish = async (values) => {
         const { fullName, email, password, phone } = values;
-        setIsSubmit(true);
+        setTimeout(setIsSubmit(true),);
         const res = await callRegister(fullName, email, password, phone);
         setIsSubmit(false);
         if (res?.data?._id) {
@@ -76,7 +76,7 @@ const RegisterPage = () => {
 
                         <div className='register-text'>
                             Signed up already?
-                            <a href='#'>Login here</a>
+                            <a href='http://127.0.0.1:3001/login'>Login here</a>
                         </div>
 
                         <Form.Item wrapperCol={{ offset: 9, span: 16 }}>

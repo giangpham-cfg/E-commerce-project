@@ -3,7 +3,11 @@ import axios from "axios";
 const baseUrl = import.meta.env.VITE_BACKEND_URL;
 const instance = axios.create({
     baseURL: baseUrl,
+    withCredentials: true,
 });
+
+//Assign token to axios
+instance.defaults.headers.common = { 'Authorization': `Bearer ${localStorage.getItem('access_token')}` }
 
 // Add a request interceptor
 instance.interceptors.request.use(function (config) {
