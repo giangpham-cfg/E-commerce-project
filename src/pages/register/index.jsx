@@ -10,13 +10,13 @@ const RegisterPage = () => {
 
     const onFinish = async (values) => {
         const { fullName, email, password, phone } = values;
-        setTimeout(setIsSubmit(true),);
+        setIsSubmit(true);
         const res = await callRegister(fullName, email, password, phone);
         setIsSubmit(false);
         if (res?.data?._id) {
             message.success({
                 content: 'Your registration is completed. Thanks for signing up!',
-                duration: 5
+                duration: 3
             });
             navigate('/login')
         } else {
