@@ -1,0 +1,106 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.header-container {
+    margin: 20px;
+    display: flex;
+    height: 5vh;
+    align-items: center;
+    // justify-content: space-between;
+    gap: 5vw;
+    color: #3b7197;
+
+    .header-left {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        .burger-menu {
+            display: none;
+
+            @media (max-width: 600px) {
+                display: inline;
+            }
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            @media (max-width: 600px) {
+                display: none;
+            }
+
+            .book-icon {
+                width: 50px;
+    
+                path {
+                   fill: transparent; 
+                   stroke-width: 10;
+                   stroke: #3b7197;
+                   stroke-dasharray: 1310;
+                   stroke-dashoffset: 0; 
+                   animation: animate-book-icon 2s linear forwards;
+                }
+    
+                 @keyframes animate-book-icon {
+                    0% {
+                        stroke-dashoffset: 0;
+                    }
+                    40% {
+                        stroke-dashoffset: 1350;
+                    }
+                    80% {
+                        stroke-dashoffset: 2700;
+                        fill: transparent;
+                    }
+                    100% {
+                        stroke-dashoffset: 2700;
+                        fill: #3b7197;
+                    }
+                 }
+    
+            }
+        }
+
+    }
+
+    .search-bar {
+        width: 50vw;
+
+        @media (max-width: 600px) {
+            width: 65vw;
+        }
+
+        svg {
+            fill: #3b7197;
+        }
+    }
+
+    .user-shopping {
+        display: flex;
+        align-items: center;
+        gap: 30px; 
+
+        .shopping-basket {
+            font-size: 20px;
+
+            svg {
+                width: 2em;
+                height: 2em;
+                fill: #3b7197;
+            }
+        }
+
+        .account {
+
+            @media (max-width: 600px) {
+                display: none;
+            }
+        }
+    }
+
+}

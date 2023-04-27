@@ -121,7 +121,6 @@ export default function App() {
       {isAuthenticated === true
         || window.location.pathname === '/login'
         || window.location.pathname === '/register'
-        || window.location.pathname === '/'
         ?
         <RouterProvider router={router} />
         :

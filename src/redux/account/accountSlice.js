@@ -24,7 +24,7 @@ export const accountSlice = createSlice({
             // immutable state based off those changes
             // console.log("check doLoginAction", action)
             state.isAuthenticated = true;
-            state.user = action.payload.user
+            state.user = action.payload
         },
         doGetAccountAction: (state, action) => {
             // console.log("check action", action)
