@@ -18,6 +18,8 @@ import Loading from './components/Loading';
 import NotFound from './components/NotFound';
 import AdminPage from './pages/admin';
 import ProtectedRoute from './components/ProtectedRoute';
+import LayoutAdmin from './components/Admin';
+import ContactPage from './pages/contact';
 
 
 const Layout = () => {
@@ -30,21 +32,21 @@ const Layout = () => {
   )
 }
 
-const LayoutAdmin = () => {
-  const isAminRoute = window.location.pathname.startsWith('/admin');
-  const user = useSelector(state => state.account.user);
-  const userRole = user.role;
+// const LayoutAdmin = () => {
+//   const isAminRoute = window.location.pathname.startsWith('/admin');
+//   const user = useSelector(state => state.account.user);
+//   const userRole = user.role;
 
-  return (
-    <div className='layout-app'>
-      {isAminRoute && userRole === 'ADMIN' && <Header />}
-      {/* <Header /> */}
-      <Outlet />
-      {/* <Footer /> */}
-      {isAminRoute && userRole === 'ADMIN' && <Footer />}
-    </div>
-  )
-}
+//   return (
+//     <div className='layout-app'>
+//       {isAminRoute && userRole === 'ADMIN' && <Header />}
+//       {/* <Header /> */}
+//       <Outlet />
+//       {/* <Footer /> */}
+//       {isAminRoute && userRole === 'ADMIN' && <Footer />}
+//     </div>
+//   )
+// }
 
 export default function App() {
   const dispatch = useDispatch();
@@ -53,7 +55,7 @@ export default function App() {
   const getAccount = async () => {
     if (window.location.pathname === '/login'
       || window.location.pathname === '/register'
-      || window.location.pathname === '/'
+      // || window.location.pathname === '/'
     ) return;
     const res = await callFetchAccount();
     console.log("check res", res)
@@ -95,14 +97,18 @@ export default function App() {
               <AdminPage />
             </ProtectedRoute>
         },
-        // {
-        //   path: "user",
-        //   element: <CheckoutPage />,
-        // },
-        // {
-        //   path: "book",
-        //   element: <BookPage />,
-        // },
+        {
+          path: "user",
+          element: <ContactPage />,
+        },
+        {
+          path: "order",
+          element: <CheckoutPage />,
+        },
+        {
+          path: "book",
+          element: <BookPage />,
+        },
       ],
     },
     {
@@ -121,6 +127,7 @@ export default function App() {
       {isAuthenticated === true
         || window.location.pathname === '/login'
         || window.location.pathname === '/register'
+        || window.location.pathname === '/'
         ?
         <RouterProvider router={router} />
         :

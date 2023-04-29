@@ -1,0 +1,14 @@
+.layout-admin {
+
+    .ant-layout .ant-layout-sider-zero-width-trigger {
+        top: 5px !important
+    }
+
+    .admin-header {
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        margin-right: 20px;
+    }
+}
