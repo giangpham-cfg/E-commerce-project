@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     isAuthenticated: false,
+    isLoading: true,
     user: {
         email: "",
         phone: "",
@@ -24,6 +25,7 @@ export const accountSlice = createSlice({
             // immutable state based off those changes
             // console.log("check doLoginAction", action)
             state.isAuthenticated = true;
+            state.isLoading = false;
             state.user = action.payload
         },
         doGetAccountAction: (state, action) => {
@@ -33,6 +35,7 @@ export const accountSlice = createSlice({
             // which detects changes to a "draft state" and produces a brand new
             // immutable state based off those changes
             state.isAuthenticated = true;
+            state.isLoading = false;
             state.user = action.payload.user
         },
     },
